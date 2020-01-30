@@ -61,6 +61,19 @@ convert_mov_to_gif() {
   fi
 }
 
+find_on_current_directory() {
+  find . -maxdepth 1 -iname "*$1*" -print
+}
+
+find_on_current_directory_recursively() {
+  find . -iname "*$1*" -print
+}
+
+find_content() {
+  find $1 -type f | xargs egrep -i '$2'
+  echo "find $1 -type f | xargs egrep -i '$2'"
+}
+
 alias c=clear
 alias trigger-ci-test="git commit -m \"[ci enable][run test] trigger CI\" --allow-empty && git push"
 alias record-simctl="xcrun simctl io booted recordVideo ~/video.mov"
