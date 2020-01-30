@@ -21,6 +21,7 @@ migrate_homebrew() {
   brew install ffmpeg
   brew install gifsicle
   brew install htop
+  brew install node
   brew install speedtest-cli
   brew install swiftformat
   brew install swiftlint
