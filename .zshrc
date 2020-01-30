@@ -16,6 +16,50 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+migrate_homebrew() {
+  brew install carthage
+  brew install ffmpeg
+  brew install gifsicle
+  brew install htop
+  brew install speedtest-cli
+  brew install swiftformat
+  brew install swiftlint
+  brew install xctool
+}
+
+convert_mov_to_gif() {
+  if ! homebrew_loc="$(type -p "brew")" || [[ -z $homebrew_loc ]]; then
+    echo "💥 Missing homebrew, installing..."
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  fi
+
+  if ! ffmpeg_loc="$(type -p "ffmpeg")" || [[ -z $ffmpeg_loc ]]; then
+    echo "💥 Missing ffmpeg, installing..."
+    brew install ffmpeg
+  fi
+
+  if ! gifsicle_loc="$(type -p "gifsicle")" || [[ -z $gifsicle_loc ]]; then
+    echo "💥 Missing gifsicle, installing..."
+    brew install gifsicle
+  fi
+
+  mov_source="$1"
+  gif_path="$2"
+  
+  if [ -z "$mov_source" ]; then
+    echo "💥 Please enter .mov file Source"
+  elif [ -z "$gif_path" ]; then
+    echo "💥 Please enter gif file Source"
+  else
+    # convert .mov into gif
+    #   - color configuration -> rgb8
+    #   - framerate -> 10
+    #   - gif optimization -> 3(Requests that gifsicle use the slowest/most file-size optimization)
+    #   - delay -> Tell gifsicle to delay 30ms between each gif (in ms)
+    ffmpeg -i $mov_source -pix_fmt rgb8 -r 10 -f gif - | gifsicle --optimize=3 --delay=10 > $gif_path
+  fi
+}
+
 alias c=clear
 alias trigger-ci-test="git commit -m \"[ci enable][run test] trigger CI\" --allow-empty && git push"
 alias record-simctl="xcrun simctl io booted recordVideo ~/video.mov"
