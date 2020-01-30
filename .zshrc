@@ -18,6 +18,7 @@ source $ZSH/oh-my-zsh.sh
 
 alias c=clear
 alias trigger-ci-test="git commit -m \"[ci enable][run test] trigger CI\" --allow-empty && git push"
+alias record-simctl="xcrun simctl io booted recordVideo ~/video.mov"
 
 # Interval to auto fetch git for `git-auto-fetch`
 GIT_AUTO_FETCH_INTERVAL=3600 # will fetch hourly
