@@ -60,9 +60,16 @@ convert_mov_to_gif() {
   fi
 }
 
+simulator-record() {
+  xcrun simctl io booted recordVideo -f ~/video.mov && convert_mov_to_gif ~/video.mov ~/video.gif
+}
+
+simulator-deeplink() {
+  xcrun simctl openurl booted $1
+}
+
 alias c=clear
 alias trigger-ci-test="git commit -m \"[ci enable][run test] trigger CI\" --allow-empty && git push"
-alias record-simctl="xcrun simctl io booted recordVideo ~/video.mov"
 
 # Interval to auto fetch git for `git-auto-fetch`
 GIT_AUTO_FETCH_INTERVAL=3600 # will fetch hourly
