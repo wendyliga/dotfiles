@@ -1,4 +1,5 @@
 export ZSH=$HOME/.oh-my-zsh
+export HOMEBREW_EDITOR=code
 
 ZSH_THEME="avit"
 
