@@ -21,6 +21,7 @@ migrate_homebrew() {
   brew install ffmpeg
   brew install gifsicle
   brew install htop
+  brew install node
   brew install speedtest-cli
   brew install swiftformat
   brew install swiftlint
@@ -66,6 +67,19 @@ simulator-record() {
 
 simulator-deeplink() {
   xcrun simctl openurl booted $1
+}
+
+find_on_current_directory() {
+  find . -maxdepth 1 -iname "*$1*" -print
+}
+
+find_on_current_directory_recursively() {
+  find . -iname "*$1*" -print
+}
+
+find_content() {
+  find $1 -type f | xargs egrep -i '$2'
+  echo "find $1 -type f | xargs egrep -i '$2'"
 }
 
 alias c=clear
