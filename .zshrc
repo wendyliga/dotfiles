@@ -6,7 +6,7 @@ ZSH_THEME="avit"
 plugins=(
   git
   ssh-agent
-  zsh-autosuggestions
+  # zsh-autosuggestions
   xcode
 )
 
@@ -24,6 +24,7 @@ migrate_homebrew() {
   brew install swiftformat
   brew install swiftlint
   brew install xctool
+  brew install task
 
   brew tap peripheryapp/periphery
   brew cask install periphery
@@ -88,6 +89,7 @@ test-with-xctool() {
 
 alias c=clear
 alias trigger-ci-test="git commit -m \"[ci enable][run test] trigger CI\" --allow-empty && git push"
+alias trigger-ci-upload="git commit -m \"[ci enable][run test][appcenter] trigger CI and Upload\" --allow-empty && git push"
 alias simulator-list="xcrun simctl list"
 
 export PATH="/usr/local/sbin:$PATH"
