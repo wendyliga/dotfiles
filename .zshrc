@@ -88,7 +88,7 @@ test-with-xctool() {
 }
 
 alias c=clear
-alias trigger-ci-test="git commit -m \"[ci enable][run test] trigger CI\" --allow-empty && git push"
+alias trigger-ci="git commit -m \"[ci enable][run test] trigger CI\" --allow-empty && git push"
 alias trigger-ci-upload="git commit -m \"[ci enable][run test][appcenter] trigger CI and Upload\" --allow-empty && git push"
 alias simulator-list="xcrun simctl list"
 
